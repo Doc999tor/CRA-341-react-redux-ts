@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { OrderCard } from './app/order'
+import { OrderCard } from './app/order-slice'
 import './card-component.css'
 
 export class CardComponent extends Component< { card: OrderCard }, {} > {

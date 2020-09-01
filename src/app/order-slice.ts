@@ -83,10 +83,20 @@ const initialState: OrderState = {
 	value: 0,
 };
 
-export const counterSlice = createSlice({
-	name: 'counter',
-	initialState,
+export const orderSlice = createSlice({
+	name: 'order',
+	initialState: {} as OrderState,
 	reducers: {
+		fetchInitialData: (): AppThunk => {
+			console.log('AppThunk');
+			return dispatch => {
+				// fetch(url)
+				console.log('fetchInitialData');
+				Promise.resolve().then(() => dispatch(loadInitialData))
+		}},
+		loadInitialData: (state, action: PayloadAction<OrderState>) => {
+			state = action.payload
+		},
 		increment: state => {
 			// Redux Toolkit allows us to write "mutating" logic in reducers. It
 			// doesn't actually mutate the state because it uses the Immer library,
@@ -101,7 +111,7 @@ export const counterSlice = createSlice({
 	},
 });
 
-export const { increment, incrementByAmount } = counterSlice.actions;
+export const { increment, incrementByAmount, fetchInitialData, loadInitialData } = orderSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -116,6 +126,6 @@ export const incrementAsync = (amount: number): AppThunk => dispatch => {
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const selectCount = (state: RootState) => state.counter.value;
+export const selectCount = (state: RootState) => state.order.value;
 
-export const { reducer: sliceReducer } = counterSlice
+export const { reducer: sliceReducer } = orderSlice

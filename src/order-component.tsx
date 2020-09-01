@@ -7,8 +7,7 @@ import { SectionComponent } from './section-component'
 import './order-component.css';
 
 function OrderComponent(props: OrderProps) {
-	console.log(props);
-	return <div className="page">
+	return props.id ? <div className="page">
 		<header>
 			<h1>Details of change order { props.id }</h1>
 			<h2>{ props.name }</h2>
@@ -22,7 +21,7 @@ function OrderComponent(props: OrderProps) {
 					/>)
 			}</ul>
 		</main>
-	</div>
+	</div> : null
 }
 
 const mapStateToProps = (state: RootState) => ({

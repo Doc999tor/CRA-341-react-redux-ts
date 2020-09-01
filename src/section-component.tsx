@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as classnames from 'classnames'
 
-import { OrderSection } from './app/order'
+import { OrderSection } from './app/order-slice'
 import { CardComponent } from './card-component'
 import './section-component.css'
 
