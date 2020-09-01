@@ -1,16 +1,18 @@
+import { logger } from './logger-middleware'
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { sliceReducer } from './order';
 
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
+	reducer: {
+		order: sliceReducer,
+	},
+	middleware: [ logger ]
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
+	ReturnType,
+	RootState,
+	unknown,
+	Action<string>
 >;
