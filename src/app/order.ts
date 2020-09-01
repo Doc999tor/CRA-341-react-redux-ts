@@ -1,23 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk, RootState } from './store';
 
-interface Card {
+export interface OrderCard {
 	name: string,
 	value: any,
 	type: 'number' | 'string' | 'date',
 	aspect_ratio: number,
 }
 
-interface OrderState {
+export interface OrderSection {
+	name: string,
+	cards: OrderCard[],
+}
+
+export interface OrderState {
 	id: number,
 	name: string,
 	value: number,
 	sections: {
-		[key: string]: {
-			name: string,
-			cards: Card[]
-		}
-	}
+		[key: string]: OrderSection,
+	},
 }
 
 const initialState: OrderState = {

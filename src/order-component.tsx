@@ -3,6 +3,7 @@ import * as classnames from 'classnames'
 import { connect, ConnectedProps } from 'react-redux';
 
 import { RootState } from './app/store'
+import { SectionComponent } from './section-component'
 
 function OrderComponent(props: OrderProps) {
 	console.log(props);
@@ -13,15 +14,11 @@ function OrderComponent(props: OrderProps) {
 		</header>
 		<main>
 			<ul>{
-				Object.keys(props.sections).map(sectionName => <li key={ sectionName } className='section'>
-					<h3>{ props.sections[sectionName].name }</h3>
-					<ul className='cards-container'>{
-						props.sections[sectionName].cards.map(card => <li key={ card.name } className="card">
-							<h4 className="card-title">{ card.name }</h4>
-							<span className="card-value">{ card.value }</span>
-						</li>)
-					}</ul>
-				</li>)
+				Object.keys(props.sections).map(sectionName =>
+					<SectionComponent
+						key={ props.sections[sectionName].name }
+						section={ props.sections[sectionName] }
+					/>)
 			}</ul>
 		</main>
 	</div>
