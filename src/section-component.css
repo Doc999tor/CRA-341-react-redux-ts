@@ -1,0 +1,27 @@
+.section {
+	list-style-type: none;
+	height: auto;
+}
+
+.section > h3 {
+	padding-left: 1.2rem;
+	color: var(--blue-color);
+	cursor: pointer;
+}
+.section h3:before {
+	content: '>';
+	display: inline-block;
+	transform: rotate(-.25turn);
+	transition: transform .2s;
+	position: absolute;
+	left: 1rem;
+}
+.section.closed h3:before { transform: rotate(.25turn); }
+
+.section .cards-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding-inline-start: 0;
+}
+.section.closed .cards-container { height: 0; overflow-y: hidden; }

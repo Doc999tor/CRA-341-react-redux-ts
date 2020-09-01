@@ -39,6 +39,11 @@ const initialState: OrderState = {
 				type: 'number',
 				aspect_ratio: 1,
 			}, {
+				name: 'Subcontract Nickname',
+				value: 'Doe John',
+				type: 'string',
+				aspect_ratio: 1,
+			}, {
 				name: 'Author',
 				value: 'John Doe',
 				type: 'string',

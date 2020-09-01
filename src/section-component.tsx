@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
+import * as classnames from 'classnames'
 
 import { OrderSection } from './app/order'
 import { CardComponent } from './card-component'
+import './section-component.css'
 
-export class SectionComponent extends Component< { section: OrderSection }, {} > {
+interface SectionComponentState {
+	isClosed: boolean,
+}
+export class SectionComponent extends Component< { section: OrderSection }, SectionComponentState > {
+	state = { isClosed: false }
+
+	toggleSection = e => {
+		let { isClosed } = this.state
+		this.setState({ isClosed: !isClosed })
+	}
+
 	render () {
 		const { section } = this.props
-		return <li className='section'>
-			<h3>{ section.name }</h3>
+		return <li className={ classnames( 'section', { closed: this.state.isClosed }) }>
+			<h3 onClick={ this.toggleSection } >{ section.name }</h3>
 			<ul className='cards-container'>{
 				section.cards.map(card => <CardComponent key={ card.name } card={ card } />)
 			}</ul>
