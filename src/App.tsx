@@ -9,7 +9,6 @@ import './App.css';
 class App extends Component<AppProps, null> {
 	componentDidMount() {
 		// this.props.fetchInitialData();
-		this.props.dispatch(fetchInitialData())
 	}
 	render () {
 		return (
@@ -18,11 +17,11 @@ class App extends Component<AppProps, null> {
 	}
 }
 
-// const mapDispatchToProps = (dispatch: Dispatch) => ({
-// 	fetchInitialData: () => dispatch(fetchInitialData())
-// })
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+	fetchInitialData: () => dispatch(fetchInitialData())
+})
 
-const connector = connect()
+const connector = connect(null, mapDispatchToProps)
 type AppProps = ConnectedProps<typeof connector>
 
 export default connector(App)

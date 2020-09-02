@@ -11,6 +11,12 @@ interface SectionComponentState {
 export class SectionComponent extends Component< { section: OrderSection }, SectionComponentState > {
 	state = { isClosed: false }
 
+	updateValue = (value: any, name: string) => {
+		const { cards } = this.props.section
+		const index = cards.findIndex(c => c.name === name)
+		cards[index].value = value
+	}
+
 	toggleSection = e => {
 		let { isClosed } = this.state
 		this.setState({ isClosed: !isClosed })
@@ -21,7 +27,7 @@ export class SectionComponent extends Component< { section: OrderSection }, Sect
 		return <li className={ classnames( 'section', { closed: this.state.isClosed }) }>
 			<h3 onClick={ this.toggleSection } >{ section.name }</h3>
 			<ul className='cards-container'>{
-				section.cards.map(card => <CardComponent key={ card.name } card={ card } />)
+				section.cards.map(card => <CardComponent key={ card.name } card={ card } updateValue={ this.updateValue } />)
 			}</ul>
 		</li>
 	}
